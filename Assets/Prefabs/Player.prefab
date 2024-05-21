@@ -81,12 +81,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: -2035298570, guid: e3453545b32dedd43836fc1f59e6a466, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 2, y: 3.0625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -119,11 +119,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f261252cc099d0e44b903c4a026a9301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 11.7
-  doubleJumpForce: 2.1
-  fallSpeed: 14.5
+  jumpForce: 11
+  doubleJumpForce: 1.9
+  fallSpeed: 8
   maxFallSpeed: -7
-  startFallSpeed: 8
+  startFallSpeed: 3
   Ground: {fileID: 8921085844225795373}
   playerBody: {fileID: 344160233289416278}
   moveSpeed: 5
@@ -197,11 +197,11 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: -0.41306913, y: -0.006662369}
+  m_Size: {x: 0.9467008, y: 2.6262665}
   m_Direction: 0
 --- !u!114 &485660851088647112
 MonoBehaviour:
@@ -244,7 +244,7 @@ Transform:
   m_GameObject: {fileID: 9060818897268623976}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0007, y: -0.8726, z: 0}
+  m_LocalPosition: {x: -0.3, y: -1.3, z: 0}
   m_LocalScale: {x: 0.662941, y: 0.102418, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -282,8 +282,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.020556804, y: -0.01477246}
-  m_Size: {x: 0.9954341, y: 2.1556385}
+  m_Offset: {x: -0.22851788, y: 0.10538033}
+  m_Size: {x: 1.7210405, y: 3.1966038}
   m_Direction: 1
 --- !u!1001 &994270747927954784
 PrefabInstance:
@@ -297,13 +297,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerGun
       objectReference: {fileID: 0}
+    - target: {fileID: 2609633208293171470, guid: 9a483d3c1ad72a14e9d149e9544a757b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033479557230067056, guid: 9a483d3c1ad72a14e9d149e9544a757b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033479557230067056, guid: 9a483d3c1ad72a14e9d149e9544a757b, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8009565304011300516, guid: 9a483d3c1ad72a14e9d149e9544a757b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.23
+      value: 0.76
       objectReference: {fileID: 0}
     - target: {fileID: 8009565304011300516, guid: 9a483d3c1ad72a14e9d149e9544a757b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.12
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 8009565304011300516, guid: 9a483d3c1ad72a14e9d149e9544a757b, type: 3}
       propertyPath: m_LocalPosition.z

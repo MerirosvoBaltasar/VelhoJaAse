@@ -8,8 +8,8 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private int enemyDamage;
     private Rigidbody2D enemyBody;
     [SerializeField] private float deathDelay;
+    private Vector3 hitDirection;
     private EnemyMovement enemyMovement;
-    private EnemyShoot enemyShoot;
     private bool enemyDead;
     [SerializeField] private float rotationIncrement;
 
@@ -17,7 +17,6 @@ public class EnemyHealth : MonoBehaviour
     {
         enemyBody = GetComponent<Rigidbody2D>();
         enemyMovement = GetComponent<EnemyMovement>();
-        enemyShoot = GetComponent<EnemyShoot>();
     }
 
     void Update()
@@ -38,29 +37,28 @@ public class EnemyHealth : MonoBehaviour
             if(enemyHealth <= 0)
             {
                 enemyDead = true;
-                enemyMovement.enabled = false;
-                enemyShoot.enabled = false;
             }
         }
     }
 
     void RotateDeadEnemy()
     {
-        Vector3 incrementVector = new Vector3(transform.right.y, transform.right.x, 0) * rotationIncrement * Time.deltaTime;
+        hitDirection = enemyMovement.enemyFacingRight ? Vector3.right : Vector3.right * -1;
+        Vector3 incremenOptionNeg = new Vector3(-rotationIncrement * Time.deltaTime, -rotationIncrement * Time.deltaTime, 0);
+        Vector3 incremenOptionPos = new Vector3(rotationIncrement * Time.deltaTime, rotationIncrement * Time.deltaTime, 0);
+        Vector3 incrementVector = enemyMovement.enemyFacingRight ? incremenOptionNeg : incremenOptionPos;
         Vector3 rotationVector = transform.right + incrementVector;
-        float roundingFactor = Mathf.Abs(transform.right.x);
 
-        if(roundingFactor > 0.05)
+        if(transform.right.x > 0)
         {
             enemyBody.freezeRotation = false;
             transform.rotation *= Quaternion.FromToRotation(transform.right, rotationVector);
         }
-        else
-        {
-            StartCoroutine(EnemyDeath());
-            enemyBody.freezeRotation = true;
+	else
+	{
+                StartCoroutine(EnemyDeath());
 
-        }
+	}
     }
     IEnumerator EnemyDeath()
     {

@@ -66,8 +66,8 @@ public class PlayerMovement : MonoBehaviour
         facingRight = transform.right == Vector3.right ? true : false;
 
         //"going"-variables return "true" when the user starts pressing the arrow key associated with the variable.
-        goingLeft = Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.D);
-        goingRight = Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.A);
+        goingLeft = Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A);
+        goingRight = Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D);
         
         //If user presses left arrow when gameobject is facing right, the gameobject is rotated.
         if(facingRight && goingLeft)
@@ -115,12 +115,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Check if the gameobject is falling, that is, if it is not on the ground and
-        //it's y-velocity is equal or less than zero. If so, make it fall faster with fallspeed up to the limit of maxFallSpeed.
+        //it's y-velocity is equal or less than 'startFallSpeed'.
+
         if (!onGround)
         {
             if(playerBody.velocity.y <= startFallSpeed && playerBody.velocity.y > maxFallSpeed)
             {
-                playerBody.AddForce(Vector2.down * fallSpeed, ForceMode2D.Force);
+                playerBody.AddForce(Vector2.down * fallSpeed, ForceMode2D.Impulse);
             }
         }
     }

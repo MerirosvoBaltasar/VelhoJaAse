@@ -11,37 +11,29 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] private float enemyShootInterval;
     public EnemyMovement enemyMovement;
     public bool timeToShoot;
-    private bool shotInterval;
+    [SerializeField] private bool shootTimer;
+    private bool enter;
+
 
     void Start()
     {
-        shotInterval = true;
         enemyMovement = GetComponent<EnemyMovement>();
     }
     void Update()
     {
         timeToShoot = enemyMovement.ItsTimeToShoot;
-        if(timeToShoot)
+        if(!enter && timeToShoot)
         {
-            CreateEnemyBullet();
+            StartCoroutine(WaitAndShoot());
         }
     }
 
-    //Function to initialize the bullet prefab into the scene.
-    void CreateEnemyBullet()
+    IEnumerator WaitAndShoot()
     {
-        if(shotInterval)
-        {
-            shotInterval = false;
-            GameObject spawnedBullet = Instantiate(enemyBullet, enemyGunMuzzle.position, Quaternion.identity);
-            spawnedBullet.GetComponent<EnemyBullet>().Enemy = gameObject;
-            StartCoroutine(EnemyFire());
-        }
-    }
-
-    IEnumerator EnemyFire()
-    {
+        enter = true;
+        GameObject spawnedBullet = Instantiate(enemyBullet, enemyGunMuzzle.position, Quaternion.identity);
+        spawnedBullet.GetComponent<EnemyBullet>().Enemy = gameObject;
         yield return new WaitForSeconds(enemyShootInterval);
-        shotInterval = true;
+        enter = false;
     }
 }

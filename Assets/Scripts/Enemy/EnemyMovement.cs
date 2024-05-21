@@ -6,75 +6,63 @@ public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private float enemySpeed;
     private float enemyDirection;
-    [SerializeField] private bool enemyNeedsToTurnAround;
+    private bool enemyNeedsToTurnAround;
     [SerializeField] private Transform enemyPosition;
     [SerializeField] private Transform groundLevel;
+    private Vector2 enemyPosition2D;
 
-    //Variables necessary to chack if enemy needs to turn around, and those for executing the actual turn.
-    public bool enemyFacingRight;
+    //Variables necessary to check if enemy is on the edge of the block, and those for rotating it if necessary.
+    [HideInInspector] public bool enemyFacingRight;
     private LayerMask groundLayer;
     private Vector3 enemyHeightVector3;
     private Vector2 enemyHeight;
     private Vector3 enemyRotationDirection;
 
-    //This is the horizontal component for the direction of the Raycast.
+    //This is the horizontal component for the direction of the Raycast to check if the enemy is on the edge of the block.
     private Vector2 rayCastHorizontal;
     private Vector2 rayCastDirection;
-    //This is the tangent angle 
-    private float rayCastAngleToTan;
 
-    //Variables to verify if the player is within a certain distance. If so, the enemy will approach, then stop and shoot.
-    //If player disappears from view, the enemy will look around for it.
-    private Vector2 enemyPosition2D;
-
-    //Variables needed to make the enemy notice the player.
-   /* [SerializeField] private float enemyNoticeRadius;
-    private bool enemyNoticePlayer;*/
-
-    //Variables needed to make enemy stop and, if player disappears, look for it.
-    [SerializeField] private bool itsTimeToShoot;
-    public bool ItsTimeToShoot {get ; private set;}
+    //Variables needed to make enemies notice if the player is behind them and to shoot, if player is near enough.
+    [HideInInspector] public bool ItsTimeToShoot;
     [SerializeField] private float enemyShootRadius;
     private LayerMask playerLayer;
     [SerializeField] private float enemyNoticeRadius;
-    [SerializeField] private float castRadius;
-    [SerializeField] private bool noticePlayer;
-    [SerializeField] private float checkInterval;
-    private bool lookForPlayer;
+    private bool noticePlayer;
+    [SerializeField] private float enemyNoticeInterval;
+    private bool enter;
 
     void Awake()
     {
         groundLayer = LayerMask.GetMask("Ground");
         playerLayer = LayerMask.GetMask("Player");        
+        ItsTimeToShoot = Physics2D.Raycast(enemyPosition2D, transform.right, enemyShootRadius, playerLayer);
     }
     
     void Start()
     {
-        //The value of tangent function for the angle of pi/2.
-        rayCastAngleToTan = 1;
         //Calculate the vector from enemyPosition to groundLevel.
         enemyHeightVector3 = groundLevel.position - enemyPosition.position;
         enemyHeight = new Vector2(enemyHeightVector3.x, enemyHeightVector3.y);
 
         //Calculate the horizontal component of the raycast-vector (rayCastDirection).
-        rayCastHorizontal = new Vector2(enemyHeight.magnitude * rayCastAngleToTan, 0);
+        rayCastHorizontal = new Vector2(enemyHeight.magnitude, 0);
 
         //Initialize the variables to check if the player is near.
         enemyPosition2D = enemyPosition.position;
-        //Initialize the raycast to stop approaching the player and start shooting.
-        itsTimeToShoot = Physics2D.Raycast(enemyPosition2D, transform.right, enemyShootRadius, playerLayer);
-        lookForPlayer = true;
+        InvokeRepeating("NoticePlayer", 0.5f, 0.1f);
     }
 
     void Update()
     {
         EnemyFacingRight();
+        EnemyShootCheck();
         enemyPosition2D = enemyPosition.position;
-        itsTimeToShoot = Physics2D.Raycast(enemyPosition2D, transform.right, enemyShootRadius, playerLayer);
-        if(!itsTimeToShoot)
+    }
+    void FixedUpdate()
+    {
+        if(!ItsTimeToShoot)
         {
             MoveEnemy();
-            NoticePlayer();
         }
     }
 
@@ -89,6 +77,7 @@ public class EnemyMovement : MonoBehaviour
     {
         //Make the Raycast conform to the direction the enemy is facing at.
         rayCastDirection = enemyFacingRight ? enemyHeight + rayCastHorizontal : enemyHeight + rayCastHorizontal * (-1);
+
 
         //Enemy needs to turn around when the Raycast returns 'false', that is, when there is no ground ahead of it.
         enemyNeedsToTurnAround = !(Physics2D.Raycast(enemyPosition.position, rayCastDirection, rayCastDirection.magnitude, groundLayer));
@@ -109,31 +98,32 @@ public class EnemyMovement : MonoBehaviour
         enemyPosition.position += new Vector3(enemyDirection*enemySpeed*Time.deltaTime, 0, 0);
     }
 
+    //Coroutine to introduce delay into the rotation of the enemy if it notices the player behind it.
+    IEnumerator TurningDelay(float waitTime)
+    {
+        enter = true;
+        yield return new WaitForSeconds(waitTime);
+        RotateEnemy();
+        enter = false;
+    }
+
+    //Method to check if player is behing the enemy.
     void NoticePlayer()
     {
-        if(lookForPlayer)
+        noticePlayer = Physics2D.Raycast(enemyPosition2D, transform.right * (-1), enemyNoticeRadius, playerLayer);
+        if (!enter && noticePlayer)
         {
-            noticePlayer = Physics2D.Raycast(enemyPosition2D, transform.right * (-1), enemyNoticeRadius, playerLayer);
-            if (noticePlayer) { RotateEnemy(); }
-            lookForPlayer = false;
-            StartCoroutine(EnemyWait());
+            StartCoroutine(TurningDelay(enemyNoticeInterval));
+        }
+        if (!enter && !noticePlayer)
+        {
+            StopCoroutine(TurningDelay(enemyNoticeInterval));
         }
     }
 
-    IEnumerator EnemyWait()
+    //Method to check if enemy is near enough for the enemy to start shooting.
+    void EnemyShootCheck()
     {
-        yield return new WaitForSeconds(checkInterval);
-        lookForPlayer = true;
-    }
-
-    void OnTriggerEnter(Collider collision)
-    {
-        if(collision.CompareTag("Player") || collision.CompareTag("PlayerBullet"))
-        {
-            if(!itsTimeToShoot)
-            {
-                RotateEnemy();
-            }
-        }
+        ItsTimeToShoot = Physics2D.Raycast(enemyPosition2D, transform.right, enemyShootRadius, playerLayer);
     }
 }

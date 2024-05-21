@@ -12,9 +12,6 @@ public class PlayerBullet : MonoBehaviour
     private float bulletDirection;
 
     [SerializeField] private float bulletSpeed;
-    //Variables to indicate when the bullet has hit something.
-    private bool bulletHits;
-    public bool BulletHits {get ; private set; } 
 
     //Variables needed to determine the lifetime of the bullet.
     private float initializationTime;
@@ -56,7 +53,6 @@ public class PlayerBullet : MonoBehaviour
 
         if(bulletLifeTime < updateTime - initializationTime)
         {
-            bulletHits = true;
             Destroy(gameObject);
         }
     }
@@ -65,7 +61,6 @@ public class PlayerBullet : MonoBehaviour
     {
         if(updateTime - initializationTime > 0.03)
         {
-            bulletHits = true;
             Destroy(gameObject);
         }
     }

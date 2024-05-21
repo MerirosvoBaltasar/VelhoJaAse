@@ -12,9 +12,6 @@ public class EnemyBullet : MonoBehaviour
     private float bulletDirection;
 
     [SerializeField] private float bulletSpeed;
-    //Variables to indicate when the bullet has hit something.
-    private bool bulletHits;
-    public bool BulletHits {get ; private set; } 
 
     //Variables needed to determine the lifetime of the bullet.
     private float initializationTime;
@@ -56,16 +53,14 @@ public class EnemyBullet : MonoBehaviour
 
         if(bulletLifeTime < updateTime - initializationTime)
         {
-            bulletHits = true;
             Destroy(gameObject);
         }
     }
     //If the bullet hits something, destroy it.
     void OnCollisionEnter2D(Collision2D bulletHit)
     {
-        if(updateTime - initializationTime > 0.03)
+        if(updateTime - initializationTime > 0.02f)
         {
-            bulletHits = true;
             Destroy(gameObject);
         }
     }
