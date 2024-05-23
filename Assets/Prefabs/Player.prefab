@@ -119,14 +119,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f261252cc099d0e44b903c4a026a9301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 11
-  doubleJumpForce: 1.9
-  fallSpeed: 8
-  maxFallSpeed: -7
+  jumpForce: 6.14
+  doubleJumpForce: 1.05
+  fallSpeed: 6.1
   startFallSpeed: 3
   Ground: {fileID: 8921085844225795373}
   playerBody: {fileID: 344160233289416278}
-  moveSpeed: 5
+  moveSpeed: 6
   playerPosition: {fileID: 7969215228287749359}
   facingRight: 0
 --- !u!114 &6825607129005214258
@@ -141,6 +140,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe3827e61276934e8f1581a18512259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  redTime: 0.5
+  playerLives: 3
+  playerHealthInspector: 3
+  playerDamage: 1
+  playerIsDead: 0
+  spawnLocation: {fileID: 0}
 --- !u!50 &344160233289416278
 Rigidbody2D:
   serializedVersion: 4
@@ -153,7 +158,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -197,7 +202,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.41306913, y: -0.006662369}

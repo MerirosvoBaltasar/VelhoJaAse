@@ -8,13 +8,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float doubleJumpForce;
     [SerializeField] private float fallSpeed;
-    [SerializeField] private float maxFallSpeed;
     [SerializeField] private float startFallSpeed;
     public GroundCheck Ground;
     int jumpCounter;
     [SerializeField] Rigidbody2D playerBody;
     private bool jumpKey;
-    
+    private float yPositionFirst;
+    private float yPositionSecond;
+    private bool fallForceAppliedCheck;
+
     //Variables concerning the movement of the gameobject.
     [SerializeField] private float moveSpeed;
     private float horizontalMove;
@@ -32,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         facingRight = true;
         goingLeft = false;
         goingRight = false;
+        fallForceAppliedCheck = false;
 
         //Initialize jump variables.
         jumpCounter = 0;
@@ -93,8 +96,8 @@ public class PlayerMovement : MonoBehaviour
         //Get the instance when the player presses space to make the gameobject jump.
         jumpKey = Input.GetKeyDown(KeyCode.Space);
 
-        //If gameobject is on the ground, return double jump counter to zero.
-        if(onGround) { jumpCounter = 0;}
+        //If gameobject is on the ground, return double jump counter to zero and fallForceAppliedCheck to false.
+        if(onGround) { jumpCounter = 0; fallForceAppliedCheck = false;}
 
         if (jumpKey)
         {
@@ -114,15 +117,19 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        //Check if the gameobject is falling, that is, if it is not on the ground and
-        //it's y-velocity is equal or less than 'startFallSpeed'.
-
-        if (!onGround)
+        //If the gameobject is not on the ground, check if it is falling.
+        if (!onGround && playerBody.velocity.y < startFallSpeed)
         {
-            if(playerBody.velocity.y <= startFallSpeed && playerBody.velocity.y > maxFallSpeed)
+            if(!fallForceAppliedCheck)
             {
-                playerBody.AddForce(Vector2.down * fallSpeed, ForceMode2D.Impulse);
+                AddFallForce();
             }
         }
+    }
+
+    void AddFallForce()
+    {
+        playerBody.AddForce(Vector2.down * fallSpeed, ForceMode2D.Impulse);
+        fallForceAppliedCheck = true;
     }
 }

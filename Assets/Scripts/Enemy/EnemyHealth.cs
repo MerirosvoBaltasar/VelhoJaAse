@@ -33,7 +33,6 @@ public class EnemyHealth : MonoBehaviour
         if(enemyHitCollision.CompareTag("PlayerBullet"))
         {
             enemyHealth -= enemyDamage;
-            Debug.Log(enemyHealth);
 
             if(enemyHealth <= 0)
             {
