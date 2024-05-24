@@ -4,15 +4,91 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    //The time the playersprite flashes red when hit.
+    [SerializeField] private float redTime;
+
+    [SerializeField] private int playerLives;
+    [SerializeField] private bool playerIsDead;
+    private Rigidbody2D playerBody;
+    private Transform playerPosition;
+    [SerializeField] private Transform spawnLocation;
+    private SpriteRenderer playerSprite;
+    private PlayerMovement playerMovement;
+    private Collider2D playerCollider;
+    public bool playerLoseLife;
+
+    void Awake()
     {
-        
+        //Fetching the necessary components.
+        playerBody = GetComponent<Rigidbody2D>();
+        playerSprite = GetComponent<SpriteRenderer>();
+        playerPosition = GetComponent<Transform>();
+        playerMovement = GetComponent<PlayerMovement>();
+        playerCollider = GetComponent<Collider2D>();
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        playerLoseLife = false;
+    }
     void Update()
     {
+        //If the player falls for to long, execute the 'PlayerFallToDeath' function.
+        if(playerPosition.position.y <= - 60f)
+        {
+            StartCoroutine(PlayerFallToDeath());
+        }
         
+    }
+    
+    void OnTriggerEnter2D(Collider2D playerHitCollision)
+    {
+        //If the player is hit by 'EnemyBullet' and currently not losing a life (that is, flashing red), make him lose a life.
+        if(!playerLoseLife && playerHitCollision.CompareTag("EnemyBullet"))
+        {
+            playerLives -= 1;
+            playerLoseLife = true;
+            StartCoroutine(PlayerLoseLifeGraphics());
+
+            if(playerLives <= 0) { OutOfLives(); }
+        }
+    }
+
+    IEnumerator PlayerLoseLifeGraphics()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            playerSprite.color = Color.red;
+            yield return new WaitForSeconds(redTime);
+            playerSprite.color = Color.white;
+            yield return new WaitForSeconds(redTime);
+        }
+        playerLoseLife = false;
+    }
+    IEnumerator PlayerFallToDeath()
+    {
+        //Disable first the playerMovement-script. Then, transfer the gameObject to the spawn location and freeze its position
+        //for a while. Player-sprite flashes on and off 3 times, then is dropped and the constraints of the rigidbody removed.
+        playerMovement.enabled = false;
+        playerPosition.position = spawnLocation.position;
+        playerBody.constraints = RigidbodyConstraints2D.FreezePosition;
+
+        for (int i = 0; i < 2; i++)
+        {
+            yield return new WaitForSeconds(0.3f);
+            playerSprite.enabled = false;
+            yield return new WaitForSeconds(0.2f);
+            playerSprite.enabled = true;
+        }
+        playerBody.constraints = RigidbodyConstraints2D.None;
+        playerBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        playerMovement.enabled = true;
+        playerBody.AddForce(Vector3.down * 3, ForceMode2D.Impulse);
+    }
+    //If player is out of lives, send him in the air, then disable his collider so that he will fall through the ground.
+    void OutOfLives()
+    {
+        playerBody.AddForce(Vector3.up * 10, ForceMode2D.Impulse);
+        playerCollider.enabled = false;
     }
 }

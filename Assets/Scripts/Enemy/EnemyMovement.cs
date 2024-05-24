@@ -31,6 +31,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float enemyNoticeInterval;
     private bool enter;
 
+    // float distance = Vector2.Distance(playerPosition.position, transform.position);
+
     void Awake()
     {
         groundLayer = LayerMask.GetMask("Ground");
