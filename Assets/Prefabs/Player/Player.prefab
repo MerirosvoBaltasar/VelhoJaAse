@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 344160233289416278}
   - component: {fileID: 3947258796683222342}
   - component: {fileID: 485660851088647112}
+  - component: {fileID: 9046707353207479110}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -146,6 +147,7 @@ MonoBehaviour:
   playerDamage: 1
   playerIsDead: 0
   spawnLocation: {fileID: 0}
+  playerLoseLife: 0
 --- !u!50 &344160233289416278
 Rigidbody2D:
   serializedVersion: 4
@@ -223,6 +225,23 @@ MonoBehaviour:
   playerGunMuzzle: {fileID: 8157837543008958142}
   playerBullet: {fileID: 1819445120076888866, guid: 69e101c3a01333142a028b755428091f, type: 3}
   playerShoots: 0
+--- !u!114 &9046707353207479110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6636792662360889230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb7a7ccd8f4f1544bc138cb5c77c77b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLives:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &9060818897268623976
 GameObject:
   m_ObjectHideFlags: 0

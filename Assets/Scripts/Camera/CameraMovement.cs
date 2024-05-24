@@ -28,7 +28,7 @@ public class CameraMovement : MonoBehaviour
     }
     void MoveCamera()
     {
-        if(playerPosition.position.y < -40)
+        if(playerPosition.position.y < -30)
         {
             cameraPosition.position = new Vector3(playerPosition.position.x, -40, -cameraDistance);
         }

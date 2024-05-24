@@ -102,7 +102,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   shooterFacingRight: 0
   bulletSpeed: 8
-  bulletLifeTime: 0.8
+  bulletLifeTime: 1
 --- !u!58 &8238077607058732271
 CircleCollider2D:
   m_ObjectHideFlags: 0

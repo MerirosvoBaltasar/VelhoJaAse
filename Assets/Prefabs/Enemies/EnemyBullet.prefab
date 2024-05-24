@@ -136,7 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemy: {fileID: 0}
   shooterFacingRight: 0
-  bulletSpeed: 8
+  bulletSpeed: 6
   bulletLifeTime: 1
 --- !u!1 &2934667998226123268
 GameObject:
