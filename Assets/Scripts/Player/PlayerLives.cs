@@ -6,8 +6,8 @@ public class PlayerLives : MonoBehaviour
 {
     private Health playerHealth;
     [SerializeField] List<GameObject> playerLives = new List<GameObject>();
-    private bool playerLosesLives;
     private int playerLivesCount;
+    private int playerLivesUpdate;
 
     private void Awake()
     {
@@ -16,28 +16,23 @@ public class PlayerLives : MonoBehaviour
     }
     void Start()
     {
-        playerLivesCount = 4;
-        playerLosesLives = playerHealth.playerLoseLife;
+        playerLivesUpdate = playerHealth.playerLives;
+        playerLivesCount = playerLivesUpdate;
         
     }
 
     void Update()
     {
-        
-    }
-
-    void OnTriggerEnter2D(Collider2D playerHitCollision)
-    {
-        if(!playerLosesLives)
+        if(playerLivesCount > 0)
         {
-            if(playerHitCollision.CompareTag("EnemyBullet"))
-            {
-                if(playerLivesCount == 0) { Debug.Log("GAME OVER"); return; }
+            playerLivesUpdate = playerHealth.playerLives;
 
+            if(playerLivesCount > playerLivesUpdate)
+            {
                 playerLives[playerLivesCount-1].SetActive(false);
                 playerLivesCount--;
+                Debug.Log(playerLivesCount);
             }
-
-        }
+        } 
     }
 }

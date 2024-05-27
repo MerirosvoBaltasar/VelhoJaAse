@@ -141,10 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe3827e61276934e8f1581a18512259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redTime: 0.5
-  playerLives: 3
-  playerHealthInspector: 3
-  playerDamage: 1
+  redTime: 0.3
+  playerLives: 4
   playerIsDead: 0
   spawnLocation: {fileID: 0}
   playerLoseLife: 0

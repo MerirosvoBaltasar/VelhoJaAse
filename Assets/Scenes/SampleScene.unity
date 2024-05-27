@@ -532,6 +532,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8bd2b3f685f8f44c8c1a69efa854962, type: 3}
+--- !u!1001 &5777516252431730086
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3345782746424764374, guid: d5b60e42840f7af43a4f79cef042d55a, type: 3}
+      propertyPath: m_Name
+      value: EnemySpikes
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824960256562122548, guid: d5b60e42840f7af43a4f79cef042d55a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 19.884504
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824960256562122548, guid: d5b60e42840f7af43a4f79cef042d55a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 14.638345
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824960256562122548, guid: d5b60e42840f7af43a4f79cef042d55a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.3087525
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824960256562122548, guid: d5b60e42840f7af43a4f79cef042d55a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824960256562122548, guid: d5b60e42840f7af43a4f79cef042d55a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824960256562122548, guid: d5b60e42840f7af43a4f79cef042d55a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824960256562122548, guid: d5b60e42840f7af43a4f79cef042d55a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824960256562122548, guid: d5b60e42840f7af43a4f79cef042d55a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824960256562122548, guid: d5b60e42840f7af43a4f79cef042d55a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824960256562122548, guid: d5b60e42840f7af43a4f79cef042d55a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d5b60e42840f7af43a4f79cef042d55a, type: 3}
 --- !u!1001 &6920407987154763062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -540,21 +597,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3947258796683222342, guid: 7d3a5a162f4c2e641b1e5babaeea5ffe, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+    - target: {fileID: 344160233289416278, guid: 7d3a5a162f4c2e641b1e5babaeea5ffe, type: 3}
+      propertyPath: m_BodyType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6636792662360889230, guid: 7d3a5a162f4c2e641b1e5babaeea5ffe, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6825607129005214258, guid: 7d3a5a162f4c2e641b1e5babaeea5ffe, type: 3}
-      propertyPath: redTime
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6825607129005214258, guid: 7d3a5a162f4c2e641b1e5babaeea5ffe, type: 3}
-      propertyPath: playerLives
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6825607129005214258, guid: 7d3a5a162f4c2e641b1e5babaeea5ffe, type: 3}
       propertyPath: spawnLocation
@@ -599,10 +648,6 @@ PrefabInstance:
     - target: {fileID: 7969215228287749359, guid: 7d3a5a162f4c2e641b1e5babaeea5ffe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9046707353207479110, guid: 7d3a5a162f4c2e641b1e5babaeea5ffe, type: 3}
-      propertyPath: playerLives.Array.size
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9046707353207479110, guid: 7d3a5a162f4c2e641b1e5babaeea5ffe, type: 3}
       propertyPath: playerLives.Array.data[0]
@@ -819,3 +864,4 @@ SceneRoots:
   - {fileID: 7547688306068039074}
   - {fileID: 1536019162}
   - {fileID: 2201636905967451555}
+  - {fileID: 5777516252431730086}
