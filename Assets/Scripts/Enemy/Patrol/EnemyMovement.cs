@@ -104,8 +104,11 @@ public class EnemyMovement : MonoBehaviour
     IEnumerator TurningDelay(float waitTime)
     {
         enter = true;
+        bool enemyCurrectDirection = enemyFacingRight;
         yield return new WaitForSeconds(waitTime);
-        RotateEnemy();
+        if(enemyFacingRight != enemyCurrectDirection)
+        {yield break;}
+        else { RotateEnemy(); }
         enter = false;
     }
 

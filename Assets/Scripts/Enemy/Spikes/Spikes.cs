@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Spikes : MonoBehaviour
 {
     [SerializeField] private Transform spikePosition;
     [SerializeField] private float movementDuration;
+    [SerializeField] private GameObject Player;
+    private Rigidbody2D playerBody;
     private bool spikesDown;
     private Vector3 spikesDownPosition;
     private Vector3 spikesUpPosition;
@@ -13,6 +16,7 @@ public class Spikes : MonoBehaviour
     void Start()
     {
         spikesDown = false;
+        playerBody = Player.GetComponent<Rigidbody2D>();
         spikesDownPosition = transform.position;
         spikesUpPosition = transform.position + new Vector3(0, 0.6f, 0);
         InvokeRepeating("SpikeMovement", 3.0f, 2.0f);
@@ -41,6 +45,13 @@ public class Spikes : MonoBehaviour
             spikePosition.position = Vector3.Lerp(start, end, elapsedTime / movementDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
+        }
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.CompareTag("Player"))
+        {
+            playerBody.AddForce(Vector2.up*3.0f, ForceMode2D.Impulse);
         }
     }
 }
