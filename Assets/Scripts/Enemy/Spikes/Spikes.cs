@@ -11,17 +11,22 @@ public class Spikes : MonoBehaviour
     [SerializeField] private float movementDuration;
     [SerializeField] private GameObject Player;
     private Rigidbody2D playerBody;
+    private SpriteRenderer spikeSprite;
     //Boolean to check whether the spikes are up or down, that is, whether they should descend or ascend.
     private bool spikesDown;
     private Vector3 spikesDownPosition;
     private Vector3 spikesUpPosition;
 
+    void Awake()
+    {
+        spikeSprite = GetComponent<SpriteRenderer>();
+    }
     void Start()
     {
         spikesDown = false;
         playerBody = Player.GetComponent<Rigidbody2D>();
         spikesDownPosition = transform.position;
-        spikesUpPosition = transform.position + new Vector3(0, 0.6f, 0);
+        spikesUpPosition = transform.position + new Vector3(0, 0.8f * spikeSprite.size.y , 0);
         InvokeRepeating("SpikeMovement", 3.0f, 2.0f);
     }
 

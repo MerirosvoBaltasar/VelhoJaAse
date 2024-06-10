@@ -20,6 +20,7 @@ public class HealthBoxTop : MonoBehaviour
     {
     }
 
+    //If the player jumps on the box, make the box open.
     void OnTriggerEnter2D(Collider2D col)
     {
         if(col.CompareTag("PlayerFeet"))

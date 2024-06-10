@@ -19,6 +19,7 @@ public class IfPlayerDead : MonoBehaviour
 
     void Update()
     {
+        //If the player is dead, disable ground collider so that the player falls through the ground.
         playerHealthScript = Player.GetComponent<Health>();
         if(playerHealthScript.playerDead)
         {
