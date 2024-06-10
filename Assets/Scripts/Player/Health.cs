@@ -7,7 +7,8 @@ public class Health : MonoBehaviour
     //The time the playersprite flashes red when hit.
     [SerializeField] private float redTime;
     public bool playerDead;
-    [SerializeField] public int playerLives;
+    [SerializeField] private int playerMaxLives;
+    public int playerLives;
     private Rigidbody2D playerBody;
     private Transform playerPosition;
     [SerializeField] private Transform spawnLocation;
@@ -28,6 +29,7 @@ public class Health : MonoBehaviour
 
     void Start()
     {
+        playerLives = playerMaxLives;
         playerLoseLife = false;
         playerDead = false;
     }
@@ -50,6 +52,12 @@ public class Health : MonoBehaviour
             playerLoseLife = true;
             if(playerLives <= 0) { playerDead = true; OutOfLives(); return; }
             else { StartCoroutine(PlayerLoseLifeGraphics()); }
+        }
+
+        //If player touches a health item, add 1 to health.
+        if(playerLives < playerMaxLives && playerHitCollision.CompareTag("HealthItem"))
+        {
+            playerLives++;   
         }
     }
 

@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
         //Get the instance when the player presses space to make the gameobject jump.
         jumpKey = Input.GetKeyDown(KeyCode.Space);
 
-        //If gameobject is on the ground, return double jump counter to zero and fallForceAppliedCheck to false.
+        //If gameobject is on the ground, return double-jump counter to zero and fallForceAppliedCheck to false.
         if(onGround) { jumpCounter = 0; fallForceAppliedCheck = false;}
 
         if (jumpKey)
@@ -109,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
             
             //If the gameobject is not on the ground, it can jump one more time,
             //thus creating the possibility for a double jump.
-            if(!onGround && (jumpCounter < 1))
+            else if(jumpCounter < 1)
             {
                 playerBody.AddForce(Vector2.up * doubleJumpForce, ForceMode2D.Impulse);
                 jumpCounter++;

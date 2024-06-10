@@ -10,7 +10,12 @@ public class PlayerShoots : MonoBehaviour
     [SerializeField] private GameObject playerBullet;
     //Check if shoot-key is pressed.
     [SerializeField] private bool playerShoots;
+    public int ammo;
 
+    void Start()
+    {
+        ammo = 50;
+    }
     void Update()
     {
         CreatePlayerBullet();
@@ -24,12 +29,12 @@ public class PlayerShoots : MonoBehaviour
         //If shoot-key is pressed, initialize the bullet prefab into the specified location.
         //Also, create a reference to this gameobject into the 'PlayerBullet'-script of the initialized gameobject.
         //This is done in order to assign to the bullet the direction where the player is facing upon shooting.
-        if(playerShoots)
+        if(playerShoots && ammo > 0)
         {
             GameObject spawnedBullet = Instantiate(playerBullet, playerGunMuzzle.position, Quaternion.identity);
 
             spawnedBullet.GetComponent<PlayerBullet>().Player = gameObject;
-
+            ammo--;
         }
 
     }

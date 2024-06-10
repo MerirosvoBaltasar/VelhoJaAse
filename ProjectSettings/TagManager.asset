@@ -6,6 +6,9 @@ TagManager:
   tags:
   - PlayerBullet
   - EnemyBullet
+  - PlayerFeet
+  - HealthItem
+  - Ammo
   layers:
   - Default
   - TransparentFX

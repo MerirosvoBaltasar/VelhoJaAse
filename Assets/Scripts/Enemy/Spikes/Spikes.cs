@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class Spikes : MonoBehaviour
 {
+
     [SerializeField] private Transform spikePosition;
+    //How long it takes for the spikes to go up and down.
     [SerializeField] private float movementDuration;
     [SerializeField] private GameObject Player;
     private Rigidbody2D playerBody;
+    //Boolean to check whether the spikes are up or down, that is, whether they should descend or ascend.
     private bool spikesDown;
     private Vector3 spikesDownPosition;
     private Vector3 spikesUpPosition;
@@ -30,16 +33,18 @@ public class Spikes : MonoBehaviour
     void SpikeMovement()
     {
         spikesDown = !spikesDown;
+        //Initial position of the spikes.
         Vector3 startingPosition = spikePosition.position;
+        //If spikes are down, move them up, if down, make them rise.
         Vector3 destination = spikesDown? spikesUpPosition : spikesDownPosition;
-
+        //Start a coroutine to make the spikes rise slowly.
         StartCoroutine(MoveSpikes(startingPosition, destination));
     }
 
     IEnumerator MoveSpikes(Vector3 start, Vector3 end)
     {
         float elapsedTime = 0;
-
+        //Interpolate spike position slowly, during the prescribed time.
         while(elapsedTime < movementDuration)
         {
             spikePosition.position = Vector3.Lerp(start, end, elapsedTime / movementDuration);
@@ -47,6 +52,7 @@ public class Spikes : MonoBehaviour
             yield return null;
         }
     }
+    //If player hits the spikes, make him jump a bit.
     void OnTriggerEnter2D(Collider2D col)
     {
         if(col.CompareTag("Player"))

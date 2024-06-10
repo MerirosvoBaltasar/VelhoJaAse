@@ -22,6 +22,7 @@ public class EnemySentryShoots : MonoBehaviour
 
     void Start()
     {
+        //Initialize variables and invoke the method to operate the gun (every x seconds).
         enemyFacingRight = false;
         waitBeforeShooting = false;
         InvokeRepeating("SentryGunOperation", 3f, 0.5f);
@@ -42,7 +43,7 @@ public class EnemySentryShoots : MonoBehaviour
 
         }
     }
-
+    //Coroutine to fire bullets every certain time interval.
     IEnumerator WaitAndShoot()
     {
         waitBeforeShooting = true;
@@ -51,7 +52,7 @@ public class EnemySentryShoots : MonoBehaviour
         yield return new WaitForSeconds(sentryShootInterval);
         waitBeforeShooting = false;
     }
-
+    //Method to scan if the player is near enough to shoot the bullet or not.
     private bool SentryScan()
     {
         timeToShoot = Physics2D.Raycast(transform.position, Vector3.right * (-sentryNoticeDistance), playerLayer); 

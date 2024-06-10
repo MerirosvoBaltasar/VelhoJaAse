@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 17a32c2ac2e1ee64d9b65ef8ce737fb7
+guid: b43480dee4a17f244934b405db8c1818
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ammo Box_Ice_0
+      name: Box_Destructible_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 7
-        width: 24
-        height: 21
+        x: 0
+        y: 0
+        width: 50
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2d40c8822fa131459d011e3de914e48
-      internalID: 172278549
+      spriteID: 9bddd01f38674e242bd55273df279f78
+      internalID: 1714126097
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ammo Box_Ice_1
+      name: Box_Destructible_1
       rect:
         serializedVersion: 2
-        x: 39
-        y: 7
-        width: 20
-        height: 21
+        x: 50
+        y: 0
+        width: 50
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 803f2b5d910c3954eb279d3daddd53bd
-      internalID: -1497718019
+      spriteID: 31b7060545d15d548b7017df3762a2f6
+      internalID: 1995905280
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ammo Box_Ice_2
+      name: Box_Destructible_2
       rect:
         serializedVersion: 2
-        x: 73
-        y: 7
-        width: 19
-        height: 21
+        x: 100
+        y: 0
+        width: 50
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e0a33de95a889242be5c5ee12c2adc3
-      internalID: -524097405
+      spriteID: 991cb27394c3d8a4e8d7a382da8f0326
+      internalID: 1331096647
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ammo Box_Ice_3
+      name: Box_Destructible_3
       rect:
         serializedVersion: 2
-        x: 103
-        y: 7
-        width: 18
-        height: 21
+        x: 150
+        y: 0
+        width: 50
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aac11431ab4b65740a6529e20faabf9a
-      internalID: 458302280
+      spriteID: 1766135d63c34cc4cb350cb9bcf68f00
+      internalID: -808963748
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ammo Box_Ice_4
+      name: Box_Destructible_4
       rect:
         serializedVersion: 2
-        x: 132
-        y: 7
-        width: 24
-        height: 21
+        x: 200
+        y: 0
+        width: 50
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,71 +208,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 871b63ab26281dc4a9df53768a6acce0
-      internalID: 1475108128
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ammo Box_Ice_5
-      rect:
-        serializedVersion: 2
-        x: 167
-        y: 7
-        width: 18
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 895f95e6a363ab94e8914face5c482b5
-      internalID: -1632475814
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ammo Box_Ice_6
-      rect:
-        serializedVersion: 2
-        x: 201
-        y: 7
-        width: 14
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ada4a13f0fd74674fa003c94287aa190
-      internalID: 1985201875
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ammo Box_Ice_7
-      rect:
-        serializedVersion: 2
-        x: 231
-        y: 7
-        width: 18
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: da172fbb5093ca1419cee9d3e505aca3
-      internalID: -446137289
+      spriteID: 3ed3ec57b54374d47aeeae73e4ac115f
+      internalID: -2091475903
       vertices: []
       indices: 
       edges: []
@@ -288,14 +225,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Ammo Box_Ice_0: 172278549
-      Ammo Box_Ice_1: -1497718019
-      Ammo Box_Ice_2: -524097405
-      Ammo Box_Ice_3: 458302280
-      Ammo Box_Ice_4: 1475108128
-      Ammo Box_Ice_5: -1632475814
-      Ammo Box_Ice_6: 1985201875
-      Ammo Box_Ice_7: -446137289
+      Box_Destructible_0: 1714126097
+      Box_Destructible_1: 1995905280
+      Box_Destructible_2: 1331096647
+      Box_Destructible_3: -808963748
+      Box_Destructible_4: -2091475903
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
